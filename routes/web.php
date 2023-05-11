@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CharacterLayoutController;
+use App\Http\Controllers\MovieLayoutController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/characters');
 });
+Route::get('/characters', [CharacterLayoutController::class, 'index']);
+Route::get('/characters/{name}', [CharacterLayoutController::class, 'show']);
+Route::get('/characters/{name}/edit', [CharacterLayoutController::class, 'edit']);
+Route::post('/characters/{name}/edit', [CharacterLayoutController::class, 'update']);
+Route::get('/characters_names', [CharacterLayoutController::class, 'listNames']);
+Route::get('/movies', [MovieLayoutController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
