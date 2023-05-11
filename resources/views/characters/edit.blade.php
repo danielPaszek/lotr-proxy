@@ -2,7 +2,7 @@
     $globalIndex = 0;
 @endphp
 <x-head :title="$character->name"/>
-<div class="mt-16">
+<div class="mt-16 mb-4">
     <form method="POST" action="/characters/{{$character->name}}/edit">
         @csrf
         <h1 class="text-center text-xl font-semibold text-gray-900 dark:text-white"
@@ -29,7 +29,7 @@
             </label>
         @else
             <h3 class="text-center mt-6">Images:</h3>
-            <div id="images" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-6">
+            <div id="images" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-6 mb-6">
 
                 @foreach($character->images as $index => $image)
                     <div>
@@ -49,8 +49,8 @@
                 @endforeach
             </div>
         @endif
-        <button id="add_image">Add image</button>
-        <button type="submit">Submit</button>
+        <x-primary-button type="button" id="add_image" >Add image</x-primary-button>
+        <x-primary-button type="submit">Submit</x-primary-button>
     </form>
 </div>
 <script>

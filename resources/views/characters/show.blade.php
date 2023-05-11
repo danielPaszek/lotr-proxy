@@ -1,12 +1,14 @@
 @php /** @var App\Models\Character $character */ @endphp
 <x-head :title="$character->name"/>
-<div class="mt-6">
+<div class="mt-6 mb-4">
     <div class="flex flex-col justify-center items-center">
     <h1 class="text-center text-xl font-semibold text-gray-900 dark:text-white"
         style="margin: 20px">{{$character->name}}</h1>
-    <a href="/characters/{{$character->name}}/edit">
-        <button class="button">Edit character</button>
-    </a>
+        @auth
+            <a href="/characters/{{$character->name}}/edit">
+                <button class="button">Edit character</button>
+            </a>
+        @endauth
     </div>
     <div>
         <div
@@ -27,7 +29,7 @@
             @foreach($character->quotes as $quote)
                 <div
                     class="max-w-32 max-h-32 p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20  flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
-                    <div class="h-32 w-32 text-center ">
+                    <div class="text-center ">
                         <p>{{$quote->dialog}}</p>
                     </div>
                 </div>

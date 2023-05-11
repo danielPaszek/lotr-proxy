@@ -1,5 +1,5 @@
 <x-head title="Characters names"/>
-<div class="mt-16">
+<div class="mt-16 mb-4">
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
         @foreach($characters as $lightCharacter)
             @php /** @var App\Models\LightCharacter $lightCharacter */ @endphp

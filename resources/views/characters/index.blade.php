@@ -3,7 +3,7 @@
 @if($message)
     <p class="mt-6 {{$msgClass}}">{{$message}}</p>
 @endif
-<div class="mt-16">
+<div class="mt-16 mb-4">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
         @foreach($characters as $character)
             @php /** @var App\Models\Character $character */
