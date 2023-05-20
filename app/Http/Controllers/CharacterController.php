@@ -32,7 +32,7 @@ class CharacterController extends Controller
     {
         $criteria = TheOneMapper::mapRequestToCharacterCriteria($request);
         $characters = $this->theOneApiFacade->getCharacters($criteria);
-
+        $characters->load('images');
         if(!$characters) {
             return response()->json(new stdClass());
         }
