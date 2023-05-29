@@ -39,6 +39,10 @@ class CharacterLayoutController extends Controller
         $criteria = TheOneMapper::mapFiltersToCharacterCriteria($request, $criteria);
         $criteria->limit = $request->input('limit', 12);
         $characters = $this->theOneApiFacade->getCharacters($criteria);
+        if(!$characters) {
+            return view('characters.index', ['characters' => [], 'page' => $criteria->page ?? 1,
+                'categories' => TheOneApiConsts::CATEGORIES, 'message' => $msg, 'msgClass' => $msgClass]);
+        }
         $characters->load('images');
         return view('characters.index', ['characters' => $characters, 'page' => $criteria->page ?? 1,
             'categories' => TheOneApiConsts::CATEGORIES, 'message' => $msg, 'msgClass' => $msgClass]);
