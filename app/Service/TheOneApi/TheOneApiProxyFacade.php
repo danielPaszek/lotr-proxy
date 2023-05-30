@@ -26,6 +26,11 @@ class TheOneApiProxyFacade
         $characters = $this->characterApiResolver->getCharactersFromDB($criteria);
         if($characters->isEmpty()) {
             $characters = $this->characterApiResolver->resolveCharacters($criteria);
+//            refetch with lower page, because you could have partial set
+            if(!$characters && $criteria->page > 1) {
+                $criteria->page--;
+                $characters = $this->characterApiResolver->resolveCharacters($criteria);
+            }
         }
         return $characters;
     }

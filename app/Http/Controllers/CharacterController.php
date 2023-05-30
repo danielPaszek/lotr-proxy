@@ -31,6 +31,7 @@ class CharacterController extends Controller
     public function index(Request $request)
     {
         $criteria = TheOneMapper::mapRequestToCharacterCriteria($request);
+        $criteria = TheOneMapper::mapFiltersToCharacterCriteria($request, $criteria);
         $characters = $this->theOneApiFacade->getCharacters($criteria);
         if(!$characters) {
             return response()->json(new stdClass());
