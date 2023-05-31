@@ -96,15 +96,16 @@ class CharacterLayoutController extends Controller
     public function update(Request $request, string $name)
     {
         $character = $this->theOneApiFacade->getCharacterByName($name);
-        //        TODO: authorization
         $values = TheOneMapper::mapUpdateRequestToMassAssignmentArray($request);
         $character = CharacterFiller::fillExistingCharacterWithMassAssignmentArray($character, $values);
         $character->save();
         $images = Collection::empty();
         foreach ($request->all() as $key => $value) {
             if(str_starts_with($key, 'image')) {
-                $img = Image::firstOrCreate(['url' => $value, 'characters_api_id' => $character->api_id]);
-                $images->push($img);
+                if($value) {
+                    $img = Image::firstOrCreate(['url' => $value, 'characters_api_id' => $character->api_id]);
+                    $images->push($img);
+                }
             }
         }
         Session::put('message', 'Successfully updated character');
