@@ -22,15 +22,14 @@
                 <p><b>Wiki Url:</b> <input name="wiki_url" value="{{$character->wiki_url }}"/></p>
             </div>
         </div>
+        <h3 class="text-center mt-6">Images:</h3>
+        <div id="images" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-6 mb-6">
         @if($character->images->isEmpty())
             <h3 class="text-center">Upload images:</h3>
             <label>Source:
-                <input name="image.{{$index}}" value="{{$image->url}}"/>
+                <input name="image.0" placeholder="image url"/>
             </label>
         @else
-            <h3 class="text-center mt-6">Images:</h3>
-            <div id="images" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-6 mb-6">
-
                 @foreach($character->images as $index => $image)
                     <div>
                         <div
@@ -47,8 +46,9 @@
                     $globalIndex++;
                     @endphp
                 @endforeach
-            </div>
         @endif
+        </div>
+
         <x-primary-button type="button" id="add_image" >Add image</x-primary-button>
         <x-primary-button type="submit">Submit</x-primary-button>
     </form>
